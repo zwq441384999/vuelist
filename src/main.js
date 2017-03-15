@@ -3,11 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 import a from '@/components/a/a'
 import b from '@/components/b/b'
 import c from '@/components/c/c'
+import d from '@/components/d/d'
 Vue.use(VueRouter)
-let routes = [
+Vue.use(VueResource)
+const routes = [
   {
     path: '/a',
     component: a
@@ -21,22 +24,24 @@ let routes = [
     component: c
   },
   {
+    path: '/d',
+    component: d
+  },
+  {
     path: '/',
     component: a
   }
 ]
 
-let router = new VueRouter({
+const router = new VueRouter({
   routes,
   linkActiveClass: 'active'
 })
 
 /* eslint-disable no-new */
 window.app = new Vue({
-  el: '#app',
   router,
-  template: '<App/>',
-  components: { App }
-})
+  render: h => h(App)
+}).$mount('#app')
 
-window.app.$router.push('/a')
+router.push('/a')

@@ -27,7 +27,7 @@ export default{
   },
   methods: {
     adds: function () {
-      window.app.$router.push('/c')
+      window.app.$router.push('/d')
       this.num++
       this.msg.push({name: 'dd' + this.num})
     },
