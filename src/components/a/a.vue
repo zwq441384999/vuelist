@@ -1,38 +1,39 @@
 <template>
   <div>
-    <div v-for="(x, index) in msg">
-      {{x.name}}
-      <span v-on:click="dels(index)">删除</span>
+    <div v-for="(x, index) in seller.data">
+      <span @click="selectFood(x, $event)">{{x.name}}</span>
     </div>
-    <div v-on:click="adds">
-      添加
-    </div>
+    <food :food="selectedFood" ref="foods"></food>
   </div>
-
 </template>
 
-<script>
-let arr = [
-  {name: 'aa'},
-  {name: 'bb'},
-  {name: 'cc'}
-]
-
+<script type="text/ecmascript-6">
+import food from '@/components/d/d'
 export default{
-  data () {
-    return {
-      msg: arr,
-      num: 0
+  props: {
+    seller: {
+      type: Object
     }
   },
-  methods: {
-    adds: function () {
-      this.num++
-      this.msg.push({name: 'dd' + this.num})
-    },
-    dels: function (index) {
-      this.msg.splice(index, 1)
+  data () {
+    return {
+      goods: [],
+      selectedFood: {}
     }
+  },
+  created () {
+    this.goods = this.seller
+  },
+  methods: {
+    selectFood (food, event) {
+      console.log(food)
+      console.log(food.name)
+      this.selectedFood = food
+      this.$refs.foods.show()
+    }
+  },
+  components: {
+    'food': food
   }
 }
 </script>
@@ -40,5 +41,14 @@ export default{
 <style scoped>
   div{
     background: red;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  div span{
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    background-color: #cccccc;
   }
 </style>

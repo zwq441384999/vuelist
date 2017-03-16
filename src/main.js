@@ -7,7 +7,6 @@ import VueResource from 'vue-resource'
 import a from '@/components/a/a'
 import b from '@/components/b/b'
 import c from '@/components/c/c'
-import d from '@/components/d/d'
 Vue.use(VueRouter)
 Vue.use(VueResource)
 const routes = [
@@ -22,10 +21,6 @@ const routes = [
   {
     path: '/c',
     component: c
-  },
-  {
-    path: '/d',
-    component: d
   },
   {
     path: '/',

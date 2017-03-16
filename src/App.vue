@@ -1,15 +1,13 @@
 <template>
   <div >
-    <v-tmp :seller="seller"></v-tmp>
     <router-link to="/a">aa</router-link>
     <router-link to="/b">bb</router-link>
     <router-link to="/c">cc</router-link>
-    <router-view></router-view>
+    <router-view :seller="seller"></router-view>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
-import d from '@/components/d/d'
 // import data from '../data.json'
 export default {
   data () {
@@ -21,9 +19,6 @@ export default {
     }
   },
   name: 'app',
-  components: {
-    'v-tmp': d
-  },
   created () {
     this.$http.get('/api/b', this.param).then(function (rsp) {
       this.seller = rsp.body
