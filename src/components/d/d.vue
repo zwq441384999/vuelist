@@ -1,13 +1,29 @@
 <template>
   <div class="box">
-    hahahahah
+    <div v-for="x in sellerData">
+      {{x.name}}
+    </div>
+
+
   </div>
 
 </template>
 
 <script>
 export default{
-
+  props: {
+    seller: {
+      type: Object
+    }
+  },
+  data () {
+    return {
+      sellerData: Object
+    }
+  },
+  created () {
+    this.sellerData = this.seller.data
+  }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

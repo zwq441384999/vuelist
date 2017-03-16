@@ -1,6 +1,6 @@
 <template>
   <div >
-    <v-tmp></v-tmp>
+    <v-tmp :seller="seller"></v-tmp>
     <router-link to="/a">aa</router-link>
     <router-link to="/b">bb</router-link>
     <router-link to="/c">cc</router-link>
@@ -14,7 +14,10 @@ import d from '@/components/d/d'
 export default {
   data () {
     return {
-      seller: {}
+      seller: {},
+      param: {
+        name: ''
+      }
     }
   },
   name: 'app',
@@ -22,12 +25,8 @@ export default {
     'v-tmp': d
   },
   created () {
-    this.$http.get('/api/a').then(response => {
-      this.seller = response.body
-      for (var i = 0; i < this.seller.data.length; i++) {
-        console.log(this.seller.data[i].name)
-      }
-    }, response => {
+    this.$http.get('/api/b', this.param).then(function (rsp) {
+      this.seller = rsp.body
     })
   }
 }
